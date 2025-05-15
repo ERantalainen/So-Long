@@ -6,7 +6,7 @@
 /*   By: erantala <erantala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 15:46:23 by erantala          #+#    #+#             */
-/*   Updated: 2025/05/14 15:42:48 by erantala         ###   ########.fr       */
+/*   Updated: 2025/05/15 15:49:23 by erantala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ int	check_map_valid(char **map)
 	int	line_count;
 	int	line_len;
 	int	curr_len;
-	int	collectible;
 
 	line_count = 0;
 	line_len = ft_strlen(map[0]);
