@@ -6,7 +6,7 @@
 /*   By: erantala <erantala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 12:20:26 by erantala          #+#    #+#             */
-/*   Updated: 2025/05/12 18:59:34 by erantala         ###   ########.fr       */
+/*   Updated: 2025/05/16 14:24:10 by erantala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,6 @@ int		ft_printnbr_fd(int n, int fd);
 int		ft_printstr_fd(char *s, int fd);
 int		ft_printf(const char *s, ...);
 int		ft_printunbr_fd(unsigned int n, int fd);
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 4
-# endif
 char	*get_next_line(int fd);
 char	*line_strchr(const char *s, int c);
 size_t	trim_length(char *buffer);
@@ -78,5 +75,8 @@ void	ft_frearr(void **s, int lines);
 char	**ft_stradup(char **src);
 char	*ft_stradd(char const *s1, char const *s2);
 size_t	ft_stralen(char **s);
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 4
+# endif
 
 #endif

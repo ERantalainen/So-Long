@@ -6,7 +6,7 @@
 /*   By: erantala <erantala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:53:50 by erantala          #+#    #+#             */
-/*   Updated: 2025/05/14 15:05:20 by erantala         ###   ########.fr       */
+/*   Updated: 2025/05/16 14:05:58 by erantala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,10 @@ int	check_fill_char(char c)
 		return (1);
 }
 
-size_t ft_count_char(char *s, char c)
+int ft_count_char(char *s, char c)
 {
-	size_t	pos;
-	size_t	count;
+	int	pos;
+	int	count;
 
 	count = 0;
 	pos = 0;

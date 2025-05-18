@@ -6,7 +6,7 @@
 /*   By: erantala <erantala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 15:27:01 by erantala          #+#    #+#             */
-/*   Updated: 2025/05/15 16:53:57 by erantala         ###   ########.fr       */
+/*   Updated: 2025/05/18 19:56:22 by erantala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ void	ft_move_up(mlx_t *mlx)
 	if (data->map[y / 64][x / 64] == '1')
 		return ;
 	else
-		data->img->char_i->instances->y -= pixel / 4;
+		data->img->char_i->instances->y -= pixel / 6;
 	if (data->map[y / 64][x / 64] == 'C')
-		data->coll -= 1;
+		data->coll += ft_get_cords(mlx, data->map, x, y);
 }
 
 void	ft_move_right(mlx_t *mlx)
@@ -58,9 +58,9 @@ void	ft_move_right(mlx_t *mlx)
 	if (data->map[y / 64][x / 64] == '1')
 		return ;
 	else
-		data->img->char_i->instances->x += pixel / 4;
+		data->img->char_i->instances->x += pixel / 6;
 	if (data->map[y / 64][x / 64] == 'C')
-		data->coll -= 1;
+		data->coll += ft_get_cords(mlx, data->map, x, y);
 }
 
 void	ft_move_left(mlx_t *mlx)
@@ -83,9 +83,9 @@ void	ft_move_left(mlx_t *mlx)
 	if (data->map[y / 64][x / 64] == '1')
 		return ;
 	else
-		data->img->char_i->instances->x -= pixel / 4;
+		data->img->char_i->instances->x -= pixel / 6;
 	if (data->map[y / 64][x / 64] == 'C')
-		data->coll -= 1;
+		data->coll += ft_get_cords(mlx, data->map, x, y);
 }
 
 void	ft_move_down(mlx_t *mlx)
@@ -108,7 +108,37 @@ void	ft_move_down(mlx_t *mlx)
 	if (data->map[y / 64][x / 64] == '1')
 		return ;
 	else
-		data->img->char_i->instances->y += pixel / 4;
+		data->img->char_i->instances->y += pixel / 6;
+	y = data->img->char_i->instances->y;
 	if (data->map[y / 64][x / 64] == 'C')
-		data->coll -= 1;
+		data->coll += ft_get_cords(mlx, data->map, x, y);
+}
+
+int	ft_get_cords(mlx_t *mlx, char **map, int x, int y)
+{
+	size_t	row;
+	size_t	col;
+	int	count;
+	t_data	*data;
+
+	data = get_data();
+	col = 0;
+	count = 0;
+	while(col++ < ft_stralen(map))
+	{
+		row = 0;
+		while (row++ < ft_strlen(map[0]))
+		{
+			if (map[col][row] == 'C' || map[col][row] == 'A')
+				count++;
+			if ((int)col == y / 64 && (int)row == x / 64)
+			{
+				mlx_delete_image(mlx, data->img->coll_i[count -1]);
+				data->img->coll_i[count-1] = NULL;
+				map[col][row] = 'A';
+				return (-1);
+			}
+		}
+	}
+	return (0);
 }

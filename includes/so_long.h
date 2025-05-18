@@ -6,7 +6,7 @@
 /*   By: erantala <erantala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:22:49 by erantala          #+#    #+#             */
-/*   Updated: 2025/05/15 16:52:53 by erantala         ###   ########.fr       */
+/*   Updated: 2025/05/18 19:01:44 by erantala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef	struct	s_images
 {
 	mlx_image_t	*char_i;
 	mlx_image_t	*wall_i;
-	mlx_image_t	*coll_i;
+	mlx_image_t	**coll_i;
 	mlx_image_t	*exit_i;
 	mlx_image_t	*ground_i;
 }	t_images;
@@ -52,7 +52,6 @@ typedef	struct s_data
 	int			coll;
 }	t_data;
 
-void	ft_move_up(mlx_t *mlx);
 int				check_chars(char *map_line);
 char			**get_map(int fd, t_point *path);
 int				check_edges(char *line);
@@ -62,14 +61,15 @@ int				check_path(char **map, int spawn, t_point *size, char *map_line);
 int				check_fill_char(char c);
 void			ft_exit(mlx_t *mlx, const char *s, void *fre);
 int				ft_game_loop(char **map, mlx_t *mlx);
-size_t 			ft_count_char(char *s, char c);
-void	create_map(char **map, int line_len, int line_count, mlx_t *mlx);
+int 			ft_count_char(char *s, char c);
+void	create_map(int line_len, int line_count);
 void	ft_init_textures(size_t map_size, char **map, mlx_t *mlx);
 void	ft_init_images( size_t map_size, char **map, t_txt *textures, mlx_t *mlx);
 void	ft_display_images(size_t map_size, char **map, t_images *images, mlx_t *mlx);
-void	ft_background(mlx_t *mlx, char **map, size_t map_size, t_images *images);
-void	ft_walls(mlx_t *mlx, char **map, size_t map_size, t_images *img);
+void	ft_background(mlx_t *mlx, size_t map_size, t_images *images);
+void	ft_walls(mlx_t *mlx, t_images *img);
 void	ft_center(mlx_t *mlx, char **map, char target, mlx_image_t *img);
+void	ft_collectibles(mlx_t *mlx, char **map, t_images *img);
 void	key_hook(void *param);
 mlx_closefunc	ft_close();
 t_data		*get_data();
@@ -80,4 +80,7 @@ void	ft_move_up(mlx_t *mlx);
 void	ft_move_down(mlx_t *mlx);
 void	ft_move_right(mlx_t *mlx);
 void	ft_move_left(mlx_t *mlx);
+void	ft_free_struct(mlx_image_t **data, int row);
+void		ft_get_cords(mlx_t *mlx, char **map, int x, int y);
+void	ft_init_coll(t_txt *txt, mlx_t *mlx);
 #endif

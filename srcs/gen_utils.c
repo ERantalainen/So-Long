@@ -6,7 +6,7 @@
 /*   By: erantala <erantala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 17:57:27 by erantala          #+#    #+#             */
-/*   Updated: 2025/05/15 16:49:22 by erantala         ###   ########.fr       */
+/*   Updated: 2025/05/16 15:01:40 by erantala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	ft_exit(mlx_t *mlx, const char *s, void *fre)
 	else
 	{
 		ft_printf("Error\n%s", s);
+		free (fre);
 		res = EXIT_FAILURE;
 	}
 
@@ -55,11 +56,15 @@ t_data	*ft_init_data()
 {
 	t_data	*data;
 
-	data = malloc(sizeof(t_data *) * 6);
+	data = malloc(sizeof(t_data));
 	if (!data)
 		return (NULL);
+	data->img = NULL;
 	data->map = malloc(sizeof(char **));
-	data->img = malloc(sizeof(t_images *) * 5);
+	if (!data->map)
+		return (0);
+	data->map = NULL;
+	data->coll = 0;
 	return (data);
 }
 

@@ -6,7 +6,7 @@
 /*   By: erantala <erantala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 15:46:23 by erantala          #+#    #+#             */
-/*   Updated: 2025/05/15 15:49:23 by erantala         ###   ########.fr       */
+/*   Updated: 2025/05/16 14:05:33 by erantala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ char	**get_map(int fd, t_point *path)
 
 	map_line = (char *)malloc(sizeof(char));
 	map_line[0] = '\0';
+	buff_line = "";
 	while (buff_line)
 	{
 		buff_line = get_next_line(fd);
