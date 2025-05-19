@@ -6,7 +6,7 @@
 /*   By: erantala <erantala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:53:50 by erantala          #+#    #+#             */
-/*   Updated: 2025/05/16 14:05:58 by erantala         ###   ########.fr       */
+/*   Updated: 2025/05/19 16:42:08 by erantala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	check_edges(char *line)
 	char	*comp;
 	int		res;
 
-	len  = ft_strlen(line);
+	len = ft_strlen(line);
 	comp = (char *)malloc(sizeof(char) * len);
 	ft_memset(comp, '1', len);
 	if (ft_memcmp(line, comp, len) != 0)
@@ -39,8 +39,8 @@ int	check_chars(char *map_line)
 	while (map_line[stat[4]])
 	{
 		c = map_line[stat[4]++];
-		if (!((c == '0' || c == '1'|| c == 'C')
-		|| (c == 'E' || c == 'P') || c == '\n'))
+		if (!((c == '0' || c == '1' || c == 'C')
+				|| (c == 'E' || c == 'P') || c == '\n'))
 			return (-1);
 		if (c == 'P')
 			stat[3] = stat[4] - 1;
@@ -89,7 +89,7 @@ int	check_fill_char(char c)
 		return (1);
 }
 
-int ft_count_char(char *s, char c)
+int	ft_count_char(char *s, char c)
 {
 	int	pos;
 	int	count;

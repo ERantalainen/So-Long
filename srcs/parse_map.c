@@ -6,7 +6,7 @@
 /*   By: erantala <erantala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 15:46:23 by erantala          #+#    #+#             */
-/*   Updated: 2025/05/16 14:05:33 by erantala         ###   ########.fr       */
+/*   Updated: 2025/05/19 16:44:09 by erantala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ char	**get_map(int fd, t_point *path)
 	while (buff_line)
 	{
 		buff_line = get_next_line(fd);
-		if(!buff_line)
-			break;
+		if (!buff_line)
+			break ;
 		map_line = ft_stradd(map_line, buff_line);
 		free (buff_line);
 	}
@@ -45,26 +45,26 @@ char	**get_map(int fd, t_point *path)
 
 int	check_map_valid(char **map)
 {
-	int	line_count;
-	int	line_len;
-	int	curr_len;
+	int	count;
+	int	len;
+	int	c_len;
 
-	line_count = 0;
-	line_len = ft_strlen(map[0]);
-	if (check_edges(map[line_count]) == -1)
+	count = 0;
+	len = ft_strlen(map[0]);
+	if (check_edges(map[count]) == -1)
 		return (-1);
-	while (map[line_count])
+	while (map[count])
 	{
-		curr_len = ft_strlen(map[line_count]);
-		if (curr_len != line_len)
+		c_len = ft_strlen(map[count]);
+		if (c_len != len)
 			return (-1);
-		if ((map[line_count][0] != '1' || map[line_count][(curr_len -1)] != '1'))
+		if ((map[count][0] != '1' || map[count][(c_len -1)] != '1'))
 			return (-1);
-		line_count++;
+		count++;
 	}
-	if (check_edges(map[line_count - 1]) == -1)
+	if (check_edges(map[count - 1]) == -1)
 		return (-1);
-	return (line_count);
+	return (count);
 }
 
 int	check_path(char **map, int spawn, t_point *size, char *map_line)
@@ -95,4 +95,3 @@ int	check_path(char **map, int spawn, t_point *size, char *map_line)
 	}
 	return (res);
 }
-

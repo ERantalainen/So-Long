@@ -6,12 +6,9 @@
 /*   By: erantala <erantala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:35:29 by erantala          #+#    #+#             */
-/*   Updated: 2025/05/15 14:14:37 by erantala         ###   ########.fr       */
+/*   Updated: 2025/05/19 16:35:20 by erantala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include "libft.h"
-
-
-

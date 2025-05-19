@@ -6,7 +6,7 @@
 /*   By: erantala <erantala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 17:51:59 by erantala          #+#    #+#             */
-/*   Updated: 2025/05/18 19:46:11 by erantala         ###   ########.fr       */
+/*   Updated: 2025/05/19 16:48:05 by erantala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ int	ft_find_target(char *map, char target)
 
 void	ft_background(mlx_t *mlx, size_t map_size, t_images *images)
 {
-	int	row_max;
-	int	col_max;
-	int	col;
+	int		row_max;
+	int		col_max;
+	int		col;
 	t_data	*data;
 
 	data = get_data();
@@ -57,7 +57,7 @@ void	ft_walls(mlx_t *mlx, t_images *img)
 {
 	size_t	rw;
 	size_t	cl;
-	int	tp;
+	int		tp;
 	t_data	*data;
 
 	data = get_data();
@@ -80,6 +80,7 @@ void	ft_walls(mlx_t *mlx, t_images *img)
 		rw++;
 	}
 }
+
 void	ft_center(mlx_t *mlx, char **map, char target, mlx_image_t *img)
 {
 	size_t	cl;
@@ -98,36 +99,39 @@ void	ft_center(mlx_t *mlx, char **map, char target, mlx_image_t *img)
 			if (map[cl][rw] == target)
 			{
 				mlx_image_to_window(mlx, img, y, x);
-				return;
+				return ;
 			}
 			cl++;
 		}
 		rw++;
 	}
 }
-// cc main.c gen_utils.c map_utils.c parse_map.c map_creat.c map_creat_utils.c movement.c libft.a libmlx42.a -Iincludes -ldl -lglfw -pthread -lm -g -fsanitize=address
 
-void ft_collectibles(mlx_t *mlx, char **map, t_images *img)
+void	ft_collectibles(mlx_t *mlx, char **map, t_images *img)
 {
 	int	row;
 	int	col;
-	int i;
+	int	i;
+	int	x;
+	int	y;
 
 	row = 1;
 	i = 0;
-	while(map[row])
+	while (map[row])
 	{
 		col = 1;
-		while(map[row][col])
+		while (map[row][col])
 		{
 			if (map[row][col] == 'C')
 			{
-				ft_printf("At %d and %d, placed %d col\n", row, col, i);
-				mlx_image_to_window(mlx, img->coll_i[i], col * 64 + 20, row * 64 + 20);
+				x = row * 64 + 20;
+				y = col * 64 + 20;
+				if ((mlx_image_to_window(mlx, img->coll_i[i], y, x)) < 0)
+					ft_exit(mlx, "Error placing collectibles", NULL);
 				i++;
 			}
 			col++;
 		}
 		row++;
-	}	
+	}
 }

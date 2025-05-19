@@ -6,18 +6,19 @@
 /*   By: erantala <erantala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 17:57:27 by erantala          #+#    #+#             */
-/*   Updated: 2025/05/16 15:01:40 by erantala         ###   ########.fr       */
+/*   Updated: 2025/05/19 19:28:41 by erantala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "so_long.h"
-#include <string.h>
+#include <fcntl.h>
 
 void	ft_exit(mlx_t *mlx, const char *s, void *fre)
 {
 	int		res;
 
+	free_data();
 	if (mlx && (!s[0]))
 	{
 		mlx_terminate(mlx);
@@ -25,56 +26,59 @@ void	ft_exit(mlx_t *mlx, const char *s, void *fre)
 	}
 	else if (mlx != NULL)
 	{
-		ft_printf("Error\n%s", s);
+		ft_putendl_fd("Error", 2);
+		ft_putstr_fd((char *)s, 2);
 		mlx_terminate(mlx);
 		res = EXIT_FAILURE;
 	}
 	else
 	{
-		ft_printf("Error\n%s", s);
+		ft_putendl_fd("Error", 2);
+		ft_putstr_fd((char *)s, 2);
 		free (fre);
 		res = EXIT_FAILURE;
 	}
-
 	exit(res);
 }
 
-mlx_closefunc	ft_close()
+void	ft_close(void *param)
 {
-	return (NULL);
+	if (!param)
+		ft_exit(NULL, "", NULL);
+	else
+		ft_exit(param, "", NULL);
 }
 
-t_data	*get_data()
-{
-	static t_data	*data;
-	if (data == NULL)
-		data = ft_init_data();
-	return (data);
-}
-
-t_data	*ft_init_data()
-{
-	t_data	*data;
-
-	data = malloc(sizeof(t_data));
-	if (!data)
-		return (NULL);
-	data->img = NULL;
-	data->map = malloc(sizeof(char **));
-	if (!data->map)
-		return (0);
-	data->map = NULL;
-	data->coll = 0;
-	return (data);
-}
-
-void	free_data()
+void	free_data(void)
 {
 	t_data	*data;
 
 	data = get_data();
-	ft_frearr((void **)data->map, ft_stralen(data->map));
-	free(data->img);
-	free(data->map);
+	if (data->map != NULL)
+	{
+		ft_frearr((void **)data->map, ft_stralen(data->map));
+	}
+	else
+		free(data->map);
 	free(data);
+}
+int	ft_valid_input(int argc, char **argv)
+{
+	int			fd;
+	const char	*s = "./maps/";
+	char		*map;
+	t_data		*data;
+
+	if (argc < 2)
+		ft_exit(NULL, "You forgot to designate a map", NULL);
+	if (argc > 2)
+		ft_exit(NULL, "That is too many maps", NULL);
+	map = ft_strjoin(s, argv[1]);
+	fd = open (map, O_RDONLY);
+	if (fd == -1)
+		ft_exit(NULL, "Error opening map", NULL);
+	data = get_data();
+	data->fd = fd;
+	free (map);
+	return (fd);
 }
