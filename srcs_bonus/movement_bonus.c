@@ -6,7 +6,7 @@
 /*   By: erantala <erantala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 14:51:57 by erantala          #+#    #+#             */
-/*   Updated: 2025/05/20 17:13:51 by erantala         ###   ########.fr       */
+/*   Updated: 2025/05/20 18:42:22 by erantala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_move_up(mlx_t *mlx)
 		return ;
 	else
 	{
-		data->img->char_i->instances->y -= pixel;
+		data->img->char_i->instances->y -= pixel / 4;
 		data->steps++;
 	}
 	if (data->map[y / 64][x / 64] == 'C')
@@ -62,7 +62,7 @@ void	ft_move_right(mlx_t *mlx)
 		return ;
 	else
 	{
-		data->img->char_i->instances->x += pixel;
+		data->img->char_i->instances->x += pixel / 4;
 		data->steps++;
 	}
 	if (data->map[y / 64][x / 64] == 'C')
@@ -90,7 +90,7 @@ void	ft_move_left(mlx_t *mlx)
 		return ;
 	else
 	{
-		data->img->char_i->instances->x -= pixel;
+		data->img->char_i->instances->x -= pixel / 4;
 		data->steps++;
 	}
 	if (data->map[y / 64][x / 64] == 'C')
@@ -118,7 +118,7 @@ void	ft_move_down(mlx_t *mlx)
 		return ;
 	else
 	{
-		data->img->char_i->instances->y += pixel;
+		data->img->char_i->instances->y += pixel / 4;
 		data->steps++;
 	}
 	y = data->img->char_i->instances->y;

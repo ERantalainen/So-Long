@@ -6,7 +6,7 @@
 /*   By: erantala <erantala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:26:25 by erantala          #+#    #+#             */
-/*   Updated: 2025/05/20 17:01:07 by erantala         ###   ########.fr       */
+/*   Updated: 2025/05/20 18:34:10 by erantala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@ void	ft_init_textures(size_t map_size, char **map, mlx_t *mlx)
 	t_txt	*txt;
 
 	txt = malloc(sizeof(t_txt));
+	if (!txt)
+		ft_exit(mlx, "Malloc error", NULL);
+	txt->nbr = malloc(sizeof(mlx_texture_t *) * 10);
+	if (!txt->nbr)
+		ft_exit(mlx, "Malloc error", NULL);
 	txt->ground = mlx_load_png("./textures/Grass.png");
 	if (!txt->ground)
 		ft_exit(mlx, "Error initializing images", NULL);
@@ -50,6 +55,7 @@ void	ft_init_textures(size_t map_size, char **map, mlx_t *mlx)
 	if (!txt->exit)
 		ft_exit(mlx, "Error initializing images", NULL);
 	ft_init_char_txt(mlx, txt);
+	ft_init_nbr_txt(mlx, txt);
 	ft_init_images(map_size, map, txt, mlx);
 }
 
@@ -72,6 +78,7 @@ void	ft_init_images(size_t map_size, char **map, t_txt *textures, mlx_t *mlx)
 	if (!img->text)
 		ft_exit(mlx, "Error initializing images", NULL);
 	ft_init_char_img(mlx, textures, img);
+	ft_init_nbr_img(mlx, textures, img);
 	ft_init_coll(textures, mlx);
 	ft_display_images(map_size, map, img, mlx);
 }
@@ -87,6 +94,7 @@ void	ft_display_images(size_t size, char **map, t_images *img, mlx_t *mlx)
 	ft_collectibles(mlx, data->map, img);
 	ft_center(mlx, data->map, 'E', img->exit_i);
 	ft_center(mlx, data->map, 'P', img->char_i);
+	ft_display_img(mlx);
 	ft_game_loop(data->map, mlx);
 }
 

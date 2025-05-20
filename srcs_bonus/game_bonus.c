@@ -6,7 +6,7 @@
 /*   By: erantala <erantala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 14:39:49 by erantala          #+#    #+#             */
-/*   Updated: 2025/05/20 17:29:35 by erantala         ###   ########.fr       */
+/*   Updated: 2025/05/20 18:42:00 by erantala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 int	ft_game_loop(char **map, mlx_t *mlx)
 {
-	ft_step_print(mlx);
 	mlx_close_hook(mlx, &ft_close, mlx);
 	mlx_loop_hook(mlx, &key_hook, mlx);
 	(void)map;
@@ -46,7 +45,7 @@ void	key_hook(void *param)
 		ft_is_exit(mlx);
 	if (steps != data->steps)
 	{
-		ft_step_print(mlx);
+		ft_step_print(mlx, steps);
 		steps++;
 	}
 }
@@ -70,16 +69,27 @@ void	ft_is_exit(mlx_t *mlx)
 			ft_exit(mlx, "", NULL);
 }
 
-void	ft_step_print(mlx_t *mlx)
+void	ft_step_print(mlx_t *mlx, int stp)
 {
 	t_data		*data;
 	char		*s;
+	int			len;
+	int			n;
 
+	(void)mlx;
+	data = get_data();
+	n = 0;
+	while (n++ < 9)
+		data->img->nbr_i[n]->instances->enabled=0;
 	data = get_data();
 	s = ft_itoa(data->steps);
-	ft_printf("%s %d\n", s, data->steps);
-	mlx_delete_image(mlx, data->img->text);
-	if (!(data->img->text = mlx_put_string(mlx, s, 0, 0)))
-		ft_exit(mlx, "Error with step counter", s);
+	len = ft_strlen(s);
+	while (len)
+	{
+		data->img->nbr_i[stp % 10]->instances->enabled=1;
+		data->img->nbr_i[stp % 10]->instances->x = len * 15;
+		stp /= 10;
+		len--;
+	}
 	free(s);
 }
