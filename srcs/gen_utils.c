@@ -6,7 +6,7 @@
 /*   By: erantala <erantala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 17:57:27 by erantala          #+#    #+#             */
-/*   Updated: 2025/05/19 19:28:41 by erantala         ###   ########.fr       */
+/*   Updated: 2025/05/20 14:07:05 by erantala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,19 +49,6 @@ void	ft_close(void *param)
 		ft_exit(param, "", NULL);
 }
 
-void	free_data(void)
-{
-	t_data	*data;
-
-	data = get_data();
-	if (data->map != NULL)
-	{
-		ft_frearr((void **)data->map, ft_stralen(data->map));
-	}
-	else
-		free(data->map);
-	free(data);
-}
 int	ft_valid_input(int argc, char **argv)
 {
 	int			fd;

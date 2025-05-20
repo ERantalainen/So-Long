@@ -6,7 +6,7 @@
 /*   By: erantala <erantala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 13:41:35 by erantala          #+#    #+#             */
-/*   Updated: 2025/05/19 19:20:21 by erantala         ###   ########.fr       */
+/*   Updated: 2025/05/20 16:50:45 by erantala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ int	main(int argc, char **argv)
 	data->img = get_images();
 	create_map(line_len, line_count);
 }
-
-
 
 void	ft_free_struct(mlx_image_t **data, int row)
 {

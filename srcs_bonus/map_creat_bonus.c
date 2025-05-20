@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_creat.c                                        :+:      :+:    :+:   */
+/*   map_creat_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erantala <erantala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:26:25 by erantala          #+#    #+#             */
-/*   Updated: 2025/05/20 14:02:53 by erantala         ###   ########.fr       */
+/*   Updated: 2025/05/20 17:01:07 by erantala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 #include "libft.h"
 
 void	create_map(int line_len, int line_count)
@@ -35,51 +35,43 @@ void	create_map(int line_len, int line_count)
 void	ft_init_textures(size_t map_size, char **map, mlx_t *mlx)
 {
 	t_txt	*txt;
-	int		err;
 
 	txt = malloc(sizeof(t_txt));
-	err = 0;
 	txt->ground = mlx_load_png("./textures/Grass.png");
 	if (!txt->ground)
-		err = 1;
-	txt->character = mlx_load_png("./textures/Char.png");
-	if (!txt->character)
-		err = 1;
+		ft_exit(mlx, "Error initializing images", NULL);
 	txt->wall = mlx_load_png("./textures/Hills.png");
 	if (!txt->wall)
-		err = 1;
+		ft_exit(mlx, "Error initializing images", NULL);
 	txt->coll = mlx_load_png("./textures/Collectible.png");
 	if (!txt->coll)
-		err = 1;
+		ft_exit(mlx, "Error initializing images", NULL);
 	txt->exit = mlx_load_png("./textures/Exit.png");
 	if (!txt->exit)
-		err = 1;
-	if (err == 1)
 		ft_exit(mlx, "Error initializing images", NULL);
+	ft_init_char_txt(mlx, txt);
 	ft_init_images(map_size, map, txt, mlx);
 }
 
 void	ft_init_images(size_t map_size, char **map, t_txt *textures, mlx_t *mlx)
 {
-	int			err;
+	t_data		*data;
 	t_images	*img;
-
-	img = get_images();
-	err = 0;
-	img->char_i = mlx_texture_to_image(mlx, textures->character);
-	if (!img->char_i)
-		err = 1;
+	data = get_data();
+	img = data->img;
 	img->wall_i = mlx_texture_to_image(mlx, textures->wall);
 	if (!img->wall_i)
-		err = 1;
+		ft_exit(mlx, "Error initializing images", NULL);
 	img->ground_i = mlx_texture_to_image(mlx, textures->ground);
 	if (!img->ground_i)
-		err = 1;
+		ft_exit(mlx, "Error initializing images", NULL);
 	img->exit_i = mlx_texture_to_image(mlx, textures->exit);
 	if (!img->exit_i)
-		err = 1;
-	if (err == 1)
 		ft_exit(mlx, "Error initializing images", NULL);
+	img->text = mlx_put_string(mlx, "0", 20, 20);
+	if (!img->text)
+		ft_exit(mlx, "Error initializing images", NULL);
+	ft_init_char_img(mlx, textures, img);
 	ft_init_coll(textures, mlx);
 	ft_display_images(map_size, map, img, mlx);
 }

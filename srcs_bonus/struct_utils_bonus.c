@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct_utils.c                                     :+:      :+:    :+:   */
+/*   struct_utils_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erantala <erantala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/19 16:48:51 by erantala          #+#    #+#             */
-/*   Updated: 2025/05/20 15:46:18 by erantala         ###   ########.fr       */
+/*   Created: 2025/05/20 16:50:09 by erantala          #+#    #+#             */
+/*   Updated: 2025/05/20 17:00:18 by erantala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 #include "libft.h"
 
 t_images	*get_images(void)
@@ -24,6 +24,9 @@ t_images	*get_images(void)
 		img->wall_i = NULL;
 		img->exit_i = NULL;
 		img->ground_i = NULL;
+		img->char_l = NULL;
+		img->char_r = NULL;
+		img->char_u = NULL;
 	}
 	return (img);
 }
@@ -48,6 +51,8 @@ t_data	*ft_init_data(void)
 	data->map = NULL;
 	data->coll = 0;
 	data->mlx = NULL;
+	data->char_cord.x = 0;
+	data->char_cord.y = 0;
 	data->steps = 0;
 	return (data);
 }

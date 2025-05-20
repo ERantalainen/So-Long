@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   movement.c                                         :+:      :+:    :+:   */
+/*   movement_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erantala <erantala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/15 15:27:01 by erantala          #+#    #+#             */
-/*   Updated: 2025/05/20 14:15:20 by erantala         ###   ########.fr       */
+/*   Created: 2025/05/20 14:51:57 by erantala          #+#    #+#             */
+/*   Updated: 2025/05/20 17:13:51 by erantala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 #include "libft.h"
 
 void	ft_move_up(mlx_t *mlx)
@@ -34,7 +34,7 @@ void	ft_move_up(mlx_t *mlx)
 		return ;
 	else
 	{
-		data->img->char_i->instances->y -= pixel / 5;
+		data->img->char_i->instances->y -= pixel;
 		data->steps++;
 	}
 	if (data->map[y / 64][x / 64] == 'C')
@@ -62,7 +62,7 @@ void	ft_move_right(mlx_t *mlx)
 		return ;
 	else
 	{
-		data->img->char_i->instances->x += pixel / 5;
+		data->img->char_i->instances->x += pixel;
 		data->steps++;
 	}
 	if (data->map[y / 64][x / 64] == 'C')
@@ -90,7 +90,7 @@ void	ft_move_left(mlx_t *mlx)
 		return ;
 	else
 	{
-		data->img->char_i->instances->x -= pixel / 5;
+		data->img->char_i->instances->x -= pixel;
 		data->steps++;
 	}
 	if (data->map[y / 64][x / 64] == 'C')
@@ -118,7 +118,7 @@ void	ft_move_down(mlx_t *mlx)
 		return ;
 	else
 	{
-		data->img->char_i->instances->y += pixel / 5;
+		data->img->char_i->instances->y += pixel;
 		data->steps++;
 	}
 	y = data->img->char_i->instances->y;
