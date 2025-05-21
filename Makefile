@@ -10,7 +10,7 @@ SRCSB = srcs/gen_utils.c srcs/main.c srcs_bonus/map_creat_utils_bonus.c \
 		srcs/map_utils.c srcs/parse_map.c \
 		srcs_bonus/struct_utils_bonus.c srcs_bonus/game_bonus.c \
 		srcs_bonus/movement_bonus.c srcs_bonus/map_creat_bonus.c \
-		srcs_bonus/bonus_utils.c \
+		srcs_bonus/utils_bonus.c srcs_bonus/game_utils_bonus.c \
 
 OBJS = $(SRCS:.c=.o)
 OBJSB = $(SRCSB:.c=.o)

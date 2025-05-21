@@ -6,7 +6,7 @@
 /*   By: erantala <erantala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:06:14 by erantala          #+#    #+#             */
-/*   Updated: 2025/05/20 18:33:51 by erantala         ###   ########.fr       */
+/*   Updated: 2025/05/21 03:09:04 by erantala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,8 @@ void			ft_move_up(mlx_t *mlx);
 void			ft_move_down(mlx_t *mlx);
 void			ft_move_right(mlx_t *mlx);
 void			ft_move_left(mlx_t *mlx);
+void			ft_set_char_rot(mlx_t *mlx, int rot);
+void			ft_char_cords(mlx_t *mlx);
 void			ft_free_struct(mlx_image_t **data, int row);
 int				ft_get_cords(mlx_t *mlx, char **map, int x, int y);
 void			ft_init_coll(t_txt *txt, mlx_t *mlx);

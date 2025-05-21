@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bonus_utils.c                                      :+:      :+:    :+:   */
+/*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erantala <erantala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:50:25 by erantala          #+#    #+#             */
-/*   Updated: 2025/05/20 18:45:37 by erantala         ###   ########.fr       */
+/*   Updated: 2025/05/21 04:29:04 by erantala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,18 +46,20 @@ void	ft_init_nbr_txt(mlx_t *mlx, t_txt *txt)
 	const char	*end = ".png";
 	const char	*pre = "./numbers/";
 	char	*path;
-
+	char	*nbr_s;
+	
 	n = 0;
 	while(n < 10)
 	{
 		txt->nbr[n] = malloc(sizeof(mlx_texture_t));
 		if (!txt->nbr[n])
 			ft_exit(mlx, "Malloc error", NULL);
-		path = (char *)malloc(sizeof(char) * 12);
-		if (!path)
-			ft_exit(mlx, "Malloc error", NULL);
-		path = ft_strlcat(pre, path, 10);
+		nbr_s = ft_itoa(n);
+		path = ft_strjoin(pre, nbr_s);
+		free(nbr_s);
 		path = ft_stradd(path, end);
+		if(!path)
+			ft_exit(mlx, "Malloc error", NULL);
 		if(!(txt->nbr[n] = mlx_load_png(path)))
 			ft_exit(mlx, "Error initializing images", path);
 		free(path);
@@ -68,12 +70,18 @@ void	ft_init_nbr_txt(mlx_t *mlx, t_txt *txt)
 void	ft_init_nbr_img(mlx_t *mlx, t_txt *txt, t_images *img)
 {
 	int	n;
+	int	loop;
 
 	n = 0;
 	while(n < 10)
 	{
-		if (!(img->nbr_i[n] = mlx_texture_to_image(mlx, txt->nbr[n])))
-			ft_exit(mlx, "Error initializing images", NULL);
+		loop = 0;
+		while (loop < 4)
+		{
+			if (!(img->nbr_i[n] = mlx_texture_to_image(mlx, txt->nbr[n])))
+				ft_exit(mlx, "Error initializing images", NULL);
+			loop++;
+		}
 		n++;
 	}
 }
@@ -83,14 +91,20 @@ void	ft_display_img(mlx_t *mlx)
 	t_data	*data;
 	int		n;
 	int		er;
+	int		loop;
+
 	data = get_data();
 	n = 0;
 	while (n < 10)
 	{
-		er = mlx_image_to_window(mlx, data->img->nbr_i[n], 0, 0);
+		loop = -1;
+		while (++loop < 10)
+		{
+		er = mlx_image_to_window(mlx, data->img->nbr_i[n], 0, 15);
 		if (er < 0)
 			ft_exit(mlx, "Error displaying images", NULL);
-		data->img->nbr_i[n]->instances->enabled=0;
+		data->img->nbr_i[n]->instances[loop].enabled=0;
+		}
 		n++;
 	}
 }

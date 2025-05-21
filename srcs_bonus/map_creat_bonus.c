@@ -6,7 +6,7 @@
 /*   By: erantala <erantala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:26:25 by erantala          #+#    #+#             */
-/*   Updated: 2025/05/20 18:34:10 by erantala         ###   ########.fr       */
+/*   Updated: 2025/05/21 04:07:30 by erantala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,10 @@ void	ft_display_images(size_t size, char **map, t_images *img, mlx_t *mlx)
 	ft_collectibles(mlx, data->map, img);
 	ft_center(mlx, data->map, 'E', img->exit_i);
 	ft_center(mlx, data->map, 'P', img->char_i);
+	ft_center(mlx, data->map, 'P', img->char_l);
+	ft_center(mlx, data->map, 'P', img->char_r);
+	ft_center(mlx, data->map, 'P', img->char_u);
+	ft_set_char_rot(mlx, 1);
 	ft_display_img(mlx);
 	ft_game_loop(data->map, mlx);
 }

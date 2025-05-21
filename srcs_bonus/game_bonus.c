@@ -6,7 +6,7 @@
 /*   By: erantala <erantala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 14:39:49 by erantala          #+#    #+#             */
-/*   Updated: 2025/05/20 18:42:00 by erantala         ###   ########.fr       */
+/*   Updated: 2025/05/21 04:31:01 by erantala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,21 +75,25 @@ void	ft_step_print(mlx_t *mlx, int stp)
 	char		*s;
 	int			len;
 	int			n;
-
+	int			loop;
 	(void)mlx;
 	data = get_data();
-	n = 0;
-	while (n++ < 9)
-		data->img->nbr_i[n]->instances->enabled=0;
-	data = get_data();
+	n = -1;
+	while (++n < 10)
+	{
+		loop = -1;
+		while(++loop < 10)
+			data->img->nbr_i[n]->instances[loop].enabled=0;
+	}
 	s = ft_itoa(data->steps);
 	len = ft_strlen(s);
-	while (len)
+	if (len > 9)
+		ft_exit(mlx, "You lost", NULL);
+	while (len--)
 	{
-		data->img->nbr_i[stp % 10]->instances->enabled=1;
-		data->img->nbr_i[stp % 10]->instances->x = len * 15;
+		data->img->nbr_i[stp % 10]->instances[n].enabled=1;
+		data->img->nbr_i[stp % 10]->instances[n--].x = len * 10 + 5;
 		stp /= 10;
-		len--;
 	}
 	free(s);
 }
