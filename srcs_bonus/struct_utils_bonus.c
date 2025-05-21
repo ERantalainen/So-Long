@@ -6,7 +6,7 @@
 /*   By: erantala <erantala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 16:50:09 by erantala          #+#    #+#             */
-/*   Updated: 2025/05/21 03:16:12 by erantala         ###   ########.fr       */
+/*   Updated: 2025/05/21 15:00:44 by erantala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,7 @@ t_images	*get_images(void)
 		img->char_l = NULL;
 		img->char_r = NULL;
 		img->char_u = NULL;
-		img->nbr_i = malloc(sizeof(mlx_image_t *) * 10);
-		if (!img->nbr_i)
-			ft_exit(NULL, "Error mallocing struct", NULL);
-		while(nbr++ < 9)
-		{
-			img->nbr_i[nbr] = malloc(sizeof(mlx_image_t));
-			if	(!img->nbr_i[nbr])
-				ft_exit(NULL, "Error mallocing struct", NULL);
-		}
+		ft_malloc_nbr(img);
 	}
 	return (img);
 }

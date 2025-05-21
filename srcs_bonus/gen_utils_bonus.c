@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gen_utils.c                                        :+:      :+:    :+:   */
+/*   gen_utils_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erantala <erantala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 17:57:27 by erantala          #+#    #+#             */
-/*   Updated: 2025/05/21 14:41:54 by erantala         ###   ########.fr       */
+/*   Updated: 2025/05/21 14:42:53 by erantala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ void	ft_exit(mlx_t *mlx, const char *s, void *fre)
 	free_data();
 	if (mlx != NULL)
 		mlx_terminate(mlx);
+	if (ft_strncmp(s, "You lost", 8) == 0)
+	{
+		ft_putendl_fd("You lost, you've gone over the maximum step count", 1);
+		exit(EXIT_SUCCESS);
+	}
 	if (!s[0])
 		exit(EXIT_SUCCESS);
 	else

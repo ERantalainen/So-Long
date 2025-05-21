@@ -6,7 +6,7 @@
 /*   By: erantala <erantala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:50:25 by erantala          #+#    #+#             */
-/*   Updated: 2025/05/21 04:29:04 by erantala         ###   ########.fr       */
+/*   Updated: 2025/05/21 14:56:50 by erantala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	ft_init_nbr_txt(mlx_t *mlx, t_txt *txt)
 	const char	*pre = "./numbers/";
 	char	*path;
 	char	*nbr_s;
-	
+
 	n = 0;
 	while(n < 10)
 	{
@@ -79,7 +79,9 @@ void	ft_init_nbr_img(mlx_t *mlx, t_txt *txt, t_images *img)
 		while (loop < 4)
 		{
 			if (!(img->nbr_i[n] = mlx_texture_to_image(mlx, txt->nbr[n])))
+			{
 				ft_exit(mlx, "Error initializing images", NULL);
+			}
 			loop++;
 		}
 		n++;
