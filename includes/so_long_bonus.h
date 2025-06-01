@@ -6,7 +6,7 @@
 /*   By: erantala <erantala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:06:14 by erantala          #+#    #+#             */
-/*   Updated: 2025/05/21 03:09:04 by erantala         ###   ########.fr       */
+/*   Updated: 2025/05/21 15:00:23 by erantala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ t_images		*ft_init_struct(t_images *img);
 t_data			*get_data();
 t_images		*get_images();
 t_data			*ft_init_data();
+void			ft_malloc_nbr(t_images	*img);
 void			ft_init_char_txt(mlx_t *mlx, t_txt *txt);
 void			ft_init_char_img(mlx_t *mlx, t_txt *txt, t_images *img);
 void			ft_init_nbr_img(mlx_t *mlx, t_txt *txt, t_images *img);

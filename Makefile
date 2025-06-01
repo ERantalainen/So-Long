@@ -6,11 +6,12 @@ SRCS = srcs/gen_utils.c srcs/main.c srcs/map_creat_utils.c \
 		srcs/map_creat.c srcs/map_utils.c srcs/movement.c \
 		srcs/parse_map.c srcs/struct_utils.c srcs/game.c
 
-SRCSB = srcs/gen_utils.c srcs/main.c srcs_bonus/map_creat_utils_bonus.c \
+SRCSB = srcs_bonus/gen_utils_bonus.c srcs/main.c srcs_bonus/map_creat_utils_bonus.c \
 		srcs/map_utils.c srcs/parse_map.c \
 		srcs_bonus/struct_utils_bonus.c srcs_bonus/game_bonus.c \
 		srcs_bonus/movement_bonus.c srcs_bonus/map_creat_bonus.c \
 		srcs_bonus/utils_bonus.c srcs_bonus/game_utils_bonus.c \
+		srcs_bonus/struct_extra_bonus.c
 
 OBJS = $(SRCS:.c=.o)
 OBJSB = $(SRCSB:.c=.o)
