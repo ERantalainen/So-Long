@@ -6,7 +6,7 @@
 /*   By: erantala <erantala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 14:51:57 by erantala          #+#    #+#             */
-/*   Updated: 2025/05/21 03:52:56 by erantala         ###   ########.fr       */
+/*   Updated: 2025/06/01 18:18:51 by erantala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_move_up(mlx_t *mlx)
 		return ;
 	else
 	{
-		data->img->char_i->instances->y -= pixel / 4;
+		data->img->char_i->instances->y -= pixel / 6;
 		ft_set_char_rot(mlx, 4);
 		data->steps++;
 	}
@@ -63,7 +63,7 @@ void	ft_move_right(mlx_t *mlx)
 		return ;
 	else
 	{
-		data->img->char_i->instances->x += pixel / 4;
+		data->img->char_i->instances->x += pixel / 6;
 		data->steps++;
 		ft_set_char_rot(mlx, 3);
 	}
@@ -92,7 +92,7 @@ void	ft_move_left(mlx_t *mlx)
 		return ;
 	else
 	{
-		data->img->char_i->instances->x -= pixel / 4;
+		data->img->char_i->instances->x -= pixel / 6;
 		data->steps++;
 		ft_set_char_rot(mlx, 2);
 	}
@@ -121,7 +121,7 @@ void	ft_move_down(mlx_t *mlx)
 		return ;
 	else
 	{
-		data->img->char_i->instances->y += pixel / 4;
+		data->img->char_i->instances->y += pixel / 6;
 		data->steps++;
 		ft_set_char_rot(mlx, 1);
 	}

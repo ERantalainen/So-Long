@@ -6,7 +6,7 @@
 /*   By: erantala <erantala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 16:50:09 by erantala          #+#    #+#             */
-/*   Updated: 2025/05/21 03:16:12 by erantala         ###   ########.fr       */
+/*   Updated: 2025/06/01 18:19:35 by erantala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,10 @@ t_images	*get_images(void)
 		img->nbr_i = malloc(sizeof(mlx_image_t *) * 10);
 		if (!img->nbr_i)
 			ft_exit(NULL, "Error mallocing struct", NULL);
-		while(nbr++ < 9)
+		while(nbr < 9)
 		{
-			img->nbr_i[nbr] = malloc(sizeof(mlx_image_t));
-			if	(!img->nbr_i[nbr])
-				ft_exit(NULL, "Error mallocing struct", NULL);
+			img->nbr_i[nbr] = NULL;
+			nbr++;
 		}
 	}
 	return (img);
@@ -89,9 +88,7 @@ t_images	*ft_init_struct(t_images *img)
 	row = 0;
 	while (row < count)
 	{
-		img->coll_i[row] = malloc(sizeof(mlx_image_t));
-		if(!img->coll_i[row])
-			ft_free_struct(img->coll_i, row);
+		img->coll_i[row] = NULL;
 		row++;
 	}
 	return (img);
@@ -106,5 +103,8 @@ void	free_data(void)
 	else
 		free(data->map);
 	close(data->fd);
+	free(data->img->coll_i);
+	free(data->img->nbr_i);
+	free(data->img);
 	free(data);
 }
