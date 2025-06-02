@@ -17,6 +17,8 @@ OBJS = $(SRCS:.c=.o)
 OBJSB = $(SRCSB:.c=.o)
 NAME = so_long
 
+.SECONDARY: $(OBJS) $(OBJSB)
+
 all: $(NAME)
 
 $(NAME): $(OBJS) libft/libft.a MLX42/build/libmlx42.a
