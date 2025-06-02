@@ -6,7 +6,7 @@
 /*   By: erantala <erantala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 16:50:09 by erantala          #+#    #+#             */
-/*   Updated: 2025/06/01 18:23:19 by erantala         ###   ########.fr       */
+/*   Updated: 2025/06/02 14:59:45 by erantala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,8 @@ t_images	*get_images(void)
 		img->nbr_i = malloc(sizeof(mlx_image_t *) * 10);
 		if (!img->nbr_i)
 			ft_exit(NULL, "Error mallocing struct", NULL);
-		while(nbr++ < 9)
-		{
-			img->nbr_i[nbr] = malloc(sizeof(mlx_image_t));
-			if	(!img->nbr_i[nbr])
-				ft_exit(NULL, "Error mallocing struct", NULL);
-		}
+		while (nbr++ < 9)
+			img->nbr_i[nbr] = NULL;
 	}
 	return (img);
 }
@@ -83,7 +79,7 @@ t_images	*ft_init_struct(t_images *img)
 	img = malloc(sizeof(t_images));
 	if (!img)
 		return (NULL);
-	img->coll_i = malloc(sizeof(mlx_image_t*) * count);
+	img->coll_i = malloc(sizeof(mlx_image_t *) * count);
 	if (!img->coll_i)
 		return (NULL);
 	row = 0;
@@ -94,18 +90,24 @@ t_images	*ft_init_struct(t_images *img)
 	}
 	return (img);
 }
+
 void	free_data(void)
 {
 	t_data	*data;
 
 	data = get_data();
+	if (!data)
+		return ;
 	if (data->map != NULL)
 		ft_frearr((void **)data->map, ft_stralen(data->map));
 	else
 		free(data->map);
 	close(data->fd);
-	free(data->img->coll_i);
-	free(data->img->nbr_i);
-	free(data->img);
+	if (data->img != NULL)
+		free(data->img->coll_i);
+	if (data->img != NULL)
+		free(data->img->nbr_i);
+	if (data->img != NULL)
+		free(data->img);
 	free(data);
 }

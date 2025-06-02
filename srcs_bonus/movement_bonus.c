@@ -6,7 +6,7 @@
 /*   By: erantala <erantala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 14:51:57 by erantala          #+#    #+#             */
-/*   Updated: 2025/06/01 18:18:51 by erantala         ###   ########.fr       */
+/*   Updated: 2025/06/02 14:13:07 by erantala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_move_up(mlx_t *mlx)
 	else
 	{
 		data->img->char_i->instances->y -= pixel / 6;
-		ft_set_char_rot(mlx, 4);
+		ft_set_char_rot(4);
 		data->steps++;
 	}
 	if (data->map[y / 64][x / 64] == 'C')
@@ -65,7 +65,7 @@ void	ft_move_right(mlx_t *mlx)
 	{
 		data->img->char_i->instances->x += pixel / 6;
 		data->steps++;
-		ft_set_char_rot(mlx, 3);
+		ft_set_char_rot(3);
 	}
 	if (data->map[y / 64][x / 64] == 'C')
 		data->coll += ft_get_cords(mlx, data->map, x, y);
@@ -94,7 +94,7 @@ void	ft_move_left(mlx_t *mlx)
 	{
 		data->img->char_i->instances->x -= pixel / 6;
 		data->steps++;
-		ft_set_char_rot(mlx, 2);
+		ft_set_char_rot(2);
 	}
 	if (data->map[y / 64][x / 64] == 'C')
 		data->coll += ft_get_cords(mlx, data->map, x, y);
@@ -123,9 +123,8 @@ void	ft_move_down(mlx_t *mlx)
 	{
 		data->img->char_i->instances->y += pixel / 6;
 		data->steps++;
-		ft_set_char_rot(mlx, 1);
+		ft_set_char_rot(1);
 	}
-	y = data->img->char_i->instances->y;
 	if (data->map[y / 64][x / 64] == 'C')
 		data->coll += ft_get_cords(mlx, data->map, x, y);
 }

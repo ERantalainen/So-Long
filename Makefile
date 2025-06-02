@@ -31,6 +31,7 @@ libft/libft.a:
 	$(MAKE) -C libft
 
 MLX42/build/libmlx42.a:
+	git clone https://github.com/codam-coding-college/MLX42.git
 	cmake -B MLX42/build -S MLX42
 	$(MAKE) -C MLX42/build
 
@@ -43,6 +44,7 @@ clean:
 
 fclean: clean
 	rm -f $(NAME) libft.a
+	rm -rf MLX42
 	$(MAKE) -C libft fclean
 
 re: fclean all

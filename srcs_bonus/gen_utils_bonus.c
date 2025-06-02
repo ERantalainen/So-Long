@@ -6,12 +6,12 @@
 /*   By: erantala <erantala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 17:57:27 by erantala          #+#    #+#             */
-/*   Updated: 2025/05/21 14:42:53 by erantala         ###   ########.fr       */
+/*   Updated: 2025/06/02 13:59:45 by erantala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "so_long.h"
+#include "so_long_bonus.h"
 #include <fcntl.h>
 
 void	ft_exit(mlx_t *mlx, const char *s, void *fre)

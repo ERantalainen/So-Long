@@ -6,7 +6,7 @@
 /*   By: erantala <erantala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 15:46:23 by erantala          #+#    #+#             */
-/*   Updated: 2025/05/19 16:44:09 by erantala         ###   ########.fr       */
+/*   Updated: 2025/06/02 16:12:38 by erantala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,25 +69,24 @@ int	check_map_valid(char **map)
 
 int	check_path(char **map, int spawn, t_point *size, char *map_line)
 {
-	t_point		spawn_point;
-	char		**flood_map;
+	t_point		sp;
+	char		**dupe;
 	int			line_len;
 	int			res;
 
 	line_len = ft_strlen(map[0]);
-	spawn_point.y = spawn / line_len;
-	spawn_point.x = spawn - line_len * spawn_point.y - 1;
-	flood_map = ft_stradup(map);
-	if (flood_map == NULL)
+	sp.y = spawn / line_len;
+	sp.x = spawn - line_len * sp.y - 1;
+	dupe = ft_stradup(map);
+	if (dupe == NULL)
 		return (-1);
-	*size = flood_fill(flood_map, *size, spawn_point.y, spawn_point.x);
-	if (flood_map[0][2] - '1' != ft_count_char(map_line, 'C'))
+	if (flood_fill(dupe, *size, sp.y, sp.x) != ft_count_char(map_line, 'C'))
 		res = -1;
-	else if (!(flood_map[0][0] == 'Y' && flood_map[0][1] == 'Y'))
+	else if (!(dupe[0][0] == 'Y' && dupe[0][1] == 'Y'))
 		res = (-1);
 	else
 		res = 1;
-	ft_frearr((void **)flood_map, ft_stralen(flood_map));
+	ft_frearr((void **)dupe, ft_stralen(dupe));
 	if (res == -1)
 	{
 		ft_frearr((void **)map, ft_stralen(map));

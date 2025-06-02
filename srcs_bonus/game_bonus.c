@@ -6,7 +6,7 @@
 /*   By: erantala <erantala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 14:39:49 by erantala          #+#    #+#             */
-/*   Updated: 2025/05/21 04:32:48 by erantala         ###   ########.fr       */
+/*   Updated: 2025/06/02 14:03:25 by erantala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,13 @@ void	ft_is_exit(mlx_t *mlx)
 	char_y = data->char_cord.y;
 	char_x = data->char_cord.x;
 	if (char_y - exit_y < 10 && char_y - exit_y > -10)
+	{
 		if (char_x - exit_x < 10 && char_x - exit_x > -10)
+		{
+			ft_printf("You won!\n");
 			ft_exit(mlx, "", NULL);
+		}
+	}
 }
 
 void	ft_step_print(mlx_t *mlx, int stp)
@@ -76,14 +81,14 @@ void	ft_step_print(mlx_t *mlx, int stp)
 	int			len;
 	int			n;
 	int			loop;
-	(void)mlx;
+
 	data = get_data();
 	n = -1;
 	while (++n < 10)
 	{
 		loop = -1;
-		while(++loop < 10)
-			data->img->nbr_i[n]->instances[loop].enabled=0;
+		while (++loop < 10)
+			data->img->nbr_i[n]->instances[loop].enabled = 0;
 	}
 	s = ft_itoa(data->steps);
 	len = ft_strlen(s);
@@ -91,7 +96,7 @@ void	ft_step_print(mlx_t *mlx, int stp)
 		ft_exit(mlx, "You lost", NULL);
 	while (len--)
 	{
-		data->img->nbr_i[stp % 10]->instances[n].enabled=1;
+		data->img->nbr_i[stp % 10]->instances[n].enabled = 1;
 		data->img->nbr_i[stp % 10]->instances[n--].x = len * 10 + 5;
 		stp /= 10;
 	}

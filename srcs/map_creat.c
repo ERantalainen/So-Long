@@ -6,7 +6,7 @@
 /*   By: erantala <erantala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:26:25 by erantala          #+#    #+#             */
-/*   Updated: 2025/05/20 14:02:53 by erantala         ###   ########.fr       */
+/*   Updated: 2025/06/02 17:01:41 by erantala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,11 @@ void	create_map(int line_len, int line_count)
 	if (line_count * 64 > MAX_HEIGHT)
 		line_count = MAX_HEIGHT / 64;
 	total = line_count * line_len * 64;
+	mlx_set_setting(MLX_STRETCH_IMAGE, 1);
 	mlx = mlx_init(line_len * 64, line_count * 64, "So_Long", true);
 	if (!mlx)
 		ft_exit(NULL, "Error creating window", NULL);
+	mlx_set_window_limit(mlx, 100, 100, MAX_WIDTH, MAX_HEIGHT);
 	data->mlx = mlx;
 	ft_init_textures(total, data->map, mlx);
 }

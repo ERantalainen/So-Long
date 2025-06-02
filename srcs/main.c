@@ -6,7 +6,7 @@
 /*   By: erantala <erantala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 13:41:35 by erantala          #+#    #+#             */
-/*   Updated: 2025/05/21 14:42:11 by erantala         ###   ########.fr       */
+/*   Updated: 2025/06/02 13:59:14 by erantala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	main(int argc, char **argv)
 
 void	ft_free_struct(mlx_image_t **data, int row)
 {
-	while(row)
+	while (row)
 	{
 		free(data[row]);
 	}

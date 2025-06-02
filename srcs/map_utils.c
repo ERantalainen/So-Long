@@ -6,7 +6,7 @@
 /*   By: erantala <erantala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:53:50 by erantala          #+#    #+#             */
-/*   Updated: 2025/05/19 16:42:08 by erantala         ###   ########.fr       */
+/*   Updated: 2025/06/02 17:02:05 by erantala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,32 +53,27 @@ int	check_chars(char *map_line)
 	return (stat[3]);
 }
 
-t_point	flood_fill(char **map, t_point size, int row, int col)
+int	flood_fill(char **map, t_point size, int row, int col)
 {
-	t_point	pos;
+	static int	count;
 
-	pos.y = row;
-	pos.x = col;
 	if (map[row][col] == 'E')
-	{
 		map[0][0] = 'Y';
-		return (pos);
-	}
 	if (map[row][col] == 'C')
 	{
 		map[0][1] = 'Y';
-		map[0][2] += 1;
+		count++;
 	}
 	if (row < 0 || col < 0 || row >= size.y || col >= size.x)
-		return (pos);
+		return (0);
 	if (map[row][col] == 'V' || check_fill_char((map[row][col])))
-		return (pos);
+		return (0);
 	map[row][col] = 'V';
 	flood_fill(map, size, row + 1, col);
 	flood_fill(map, size, row - 1, col);
 	flood_fill(map, size, row, col + 1);
 	flood_fill(map, size, row, col - 1);
-	return (pos);
+	return (count);
 }
 
 int	check_fill_char(char c)

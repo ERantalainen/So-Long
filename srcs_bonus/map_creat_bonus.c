@@ -6,7 +6,7 @@
 /*   By: erantala <erantala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:26:25 by erantala          #+#    #+#             */
-/*   Updated: 2025/05/21 04:07:30 by erantala         ###   ########.fr       */
+/*   Updated: 2025/06/02 17:01:39 by erantala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,17 @@ void	create_map(int line_len, int line_count)
 	mlx_t	*mlx;
 
 	data = get_data();
-	if (line_len * 64 > MAX_WIDTH)
-		line_len = MAX_WIDTH / 64;
-	if (line_count * 64 > MAX_HEIGHT)
-		line_count = MAX_HEIGHT / 64;
 	total = line_count * line_len * 64;
+	mlx_set_setting(MLX_STRETCH_IMAGE, 1);
 	mlx = mlx_init(line_len * 64, line_count * 64, "So_Long", true);
 	if (!mlx)
 		ft_exit(NULL, "Error creating window", NULL);
+	mlx_set_window_limit(mlx, 100, 100, MAX_WIDTH, MAX_HEIGHT);
 	data->mlx = mlx;
-	ft_init_textures(total, data->map, mlx);
+	ft_init_textures(total, mlx);
 }
 
-void	ft_init_textures(size_t map_size, char **map, mlx_t *mlx)
+void	ft_init_textures(size_t map_size, mlx_t *mlx)
 {
 	t_txt	*txt;
 
@@ -56,13 +54,14 @@ void	ft_init_textures(size_t map_size, char **map, mlx_t *mlx)
 		ft_exit(mlx, "Error initializing images", NULL);
 	ft_init_char_txt(mlx, txt);
 	ft_init_nbr_txt(mlx, txt);
-	ft_init_images(map_size, map, txt, mlx);
+	ft_init_images(map_size, txt, mlx);
 }
 
-void	ft_init_images(size_t map_size, char **map, t_txt *textures, mlx_t *mlx)
+void	ft_init_images(size_t map_size, t_txt *textures, mlx_t *mlx)
 {
 	t_data		*data;
 	t_images	*img;
+
 	data = get_data();
 	img = data->img;
 	img->wall_i = mlx_texture_to_image(mlx, textures->wall);
@@ -80,14 +79,13 @@ void	ft_init_images(size_t map_size, char **map, t_txt *textures, mlx_t *mlx)
 	ft_init_char_img(mlx, textures, img);
 	ft_init_nbr_img(mlx, textures, img);
 	ft_init_coll(textures, mlx);
-	ft_display_images(map_size, map, img, mlx);
+	ft_display_images(map_size, img, mlx);
 }
 
-void	ft_display_images(size_t size, char **map, t_images *img, mlx_t *mlx)
+void	ft_display_images(size_t size, t_images *img, mlx_t *mlx)
 {
 	t_data	*data;
 
-	(void)map;
 	data = get_data();
 	ft_background(mlx, size, img);
 	ft_walls(mlx, img);
@@ -97,7 +95,7 @@ void	ft_display_images(size_t size, char **map, t_images *img, mlx_t *mlx)
 	ft_center(mlx, data->map, 'P', img->char_l);
 	ft_center(mlx, data->map, 'P', img->char_r);
 	ft_center(mlx, data->map, 'P', img->char_u);
-	ft_set_char_rot(mlx, 1);
+	ft_set_char_rot(1);
 	ft_display_img(mlx);
 	ft_game_loop(data->map, mlx);
 }

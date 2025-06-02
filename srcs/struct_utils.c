@@ -6,7 +6,7 @@
 /*   By: erantala <erantala@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 16:48:51 by erantala          #+#    #+#             */
-/*   Updated: 2025/06/01 18:15:22 by erantala         ###   ########.fr       */
+/*   Updated: 2025/06/02 16:23:09 by erantala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ t_images	*ft_init_struct(t_images *img)
 	img = malloc(sizeof(t_images));
 	if (!img)
 		return (NULL);
-	img->coll_i = malloc(sizeof(mlx_image_t*) * count);
+	img->coll_i = malloc(sizeof(mlx_image_t *) * count);
 	if (!img->coll_i)
 		return (NULL);
 	row = 0;
@@ -78,6 +78,7 @@ t_images	*ft_init_struct(t_images *img)
 	}
 	return (img);
 }
+
 void	free_data(void)
 {
 	t_data	*data;
@@ -88,6 +89,9 @@ void	free_data(void)
 	else
 		free(data->map);
 	close(data->fd);
-	free (data->img->coll_i);
+	if (data->img != NULL)
+		free (data->img->coll_i);
+	if (data->img != NULL)
+		free(data->img);
 	free(data);
 }
