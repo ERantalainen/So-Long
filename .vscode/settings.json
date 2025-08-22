@@ -1,9 +1,0 @@
-{
-	"files.associations": {
-		"string.h": "c",
-		"so_long.h": "c",
-		"libft.h": "c",
-		"cstdlib": "c"
-	},
-	"cmake.sourceDirectory": "/home/erantala/Hive/Rank02/So-Long/MLX42"
-}
